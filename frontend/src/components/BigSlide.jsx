@@ -36,7 +36,7 @@ const BigSlide = () => {
           type="range"
           min={0}
           max={100}
-          value={setSliderPosition}
+          // value={setSliderPosition}
         />
       </div>
     </div>

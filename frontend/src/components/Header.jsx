@@ -1,8 +1,17 @@
 import React, { useContext } from "react";
 import video from "../assets/manuel_compressed.mp4";
 import { AppContext } from "../context/AppContext";
+import { useNavigate } from "react-router-dom";
 const Header = () => {
-  const { removeBg } = useContext(AppContext);
+  const { removeBg, userData } = useContext(AppContext);
+  const navigate = useNavigate();
+
+  const handleUploadClick = (e) => {
+    if (!userData || !userData.username) {
+      e.preventDefault();
+      navigate("/login");
+    }
+  };
   return (
     <div className="flex justify-between items-center max-sm:flex-col-reverse gap-y-10 px-4 mb-14 mt-10 lg:px-44 sm:mt-20">
       {/* Left side */}
@@ -34,6 +43,7 @@ const Header = () => {
           <label
             className="inline-flex gap-3 px-8 py-3.5 md:px-6 md:py-2.5 rounded-full cursor-pointer bg-gradient-to-r from-blue-600 to-fuchsia-500 m-auto hover:scale-105 transition-all duration-700 text-white"
             htmlFor="upload1"
+            onClick={handleUploadClick}
           >
             <span>Upload Image</span>
           </label>

@@ -1,11 +1,12 @@
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import logo from "../assets/Remove_BG_Logo.png";
 import Cookies from "js-cookie";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { userData, setUserData, setutoken } = useContext(AppContext);
   const [dropdown, setDropdown] = useState(false);
 
@@ -16,6 +17,9 @@ const Navbar = () => {
     setDropdown(false);
     navigate("/login");
   };
+
+  const isLoginPage = location.pathname === "/login";
+  const isRegisterPage = location.pathname === "/register";
 
   return (
     <div className="flex justify-between items-center p-4 text-white">
@@ -50,12 +54,30 @@ const Navbar = () => {
             )}
           </div>
         ) : (
-          <button
-            className="border-white px-3 py-1 text-xl rounded-md bg-gray-900 font-semibold hover:bg-gray-700 cursor-pointer"
-            onClick={() => navigate("/login")}
-          >
-            Login
-          </button>
+          <>
+            {isLoginPage ? (
+              <button
+                className="border-white px-3 py-1 text-xl rounded-md bg-gray-900 font-semibold hover:bg-gray-700 cursor-pointer"
+                onClick={() => navigate("/register")}
+              >
+                Register
+              </button>
+            ) : isRegisterPage ? (
+              <button
+                className="border-white px-3 py-1 text-xl rounded-md bg-gray-900 font-semibold hover:bg-gray-700 cursor-pointer"
+                onClick={() => navigate("/login")}
+              >
+                Login
+              </button>
+            ) : (
+              <button
+                className="border-white px-3 py-1 text-xl rounded-md bg-gray-900 font-semibold hover:bg-gray-700 cursor-pointer"
+                onClick={() => navigate("/login")}
+              >
+                Login
+              </button>
+            )}
+          </>
         )}
       </div>
     </div>

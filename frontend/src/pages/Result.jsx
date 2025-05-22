@@ -20,7 +20,7 @@ const Result = () => {
               Background Removed
             </p>
             <div className="rounded-md border border-gray-300 h-full relative bg-layer overflow-hidden">
-              <img src={resultImage ? resultImage : ""} alt="resultimage" />
+              <img src={resultImage ? resultImage : null} alt="resultimage" />
               {!resultImage && image && (
                 <div className="absolute right-1/2 bottom-1/2 transform translate-x-1/2 translate-y-1/2">
                   <div className="border-4 border-blue-500 rounded-full h-12 w-12 border-t-transparent animate-spin"></div>

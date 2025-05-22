@@ -1,9 +1,17 @@
 import React, { useContext } from "react";
 import App from "../App";
 import { AppContext } from "../context/AppContext";
+import { useNavigate } from "react-router-dom";
 
 const Upload = () => {
-  const { removeBg } = useContext(AppContext);
+  const { removeBg, userData} = useContext(AppContext);
+  const navigate = useNavigate();
+  const handleUploadClick = (e) => {
+    if (!userData || !userData.username) {
+      e.preventDefault();
+      navigate("/login");
+    }
+  };
   return (
     <div className="pb-16">
       <h1 className="text-center p-5 text-2xl md:text-3xl lg:text-5xl mt-4 font-semibold bg-gradient-to-r from-blue-500 to-red-400 bg-clip-text text-transparent">
@@ -20,6 +28,7 @@ const Upload = () => {
         <label
           htmlFor="upload2"
           className="inline-flex gap-3 px-8 py-3.5 md:px-6 md:py-2.5 rounded-full cursor-pointer bg-gradient-to-r from-blue-600 to-fuchsia-500 m-auto hover:scale-105 transition-all duration-700 text-white"
+          onClick={handleUploadClick}
         >
           Upload Image
         </label>
