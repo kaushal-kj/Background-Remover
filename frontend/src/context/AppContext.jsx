@@ -16,7 +16,7 @@ const AppContextProvider = ({ children }) => {
   const [utoken, setutoken] = useState(Cookies.get("token") || "");
   const [userData, setUserData] = useState({});
 
-  const backendUrl = "http://localhost:4000";
+  const backendUrl = "https://background-remover-pi97.onrender.com";
   const handleRegister = async (form, onSuccess, onError) => {
     try {
       const { data } = await axios.post(
